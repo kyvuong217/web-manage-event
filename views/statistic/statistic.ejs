@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/stylefordashboard.css">
+
+
+    <title>Horizone</title>
+</head>
+
+</style>
+<body>
+
+    <%- include ('../include/sideBar') -%>
+    
+    <div class="main-content">   
+        <main>
+            <div class="statistic">
+                <h2 class="dash-title">CATEGORY EVENT</h2>
+                <div class="dash-cards">
+                    <% categoryData.forEach((data) =>{ %>
+                    <div class="card-single">
+                        <div class="card-body">
+                            <span class="ti-check-box"></span>
+                            <div>
+                                <h4><%= data.category_name %></h4>
+                                <h5><i>Total: <%= data.total %></i></h5></p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="/category/<%= data.category_id %>">View</a>
+                        </div>
+                    </div>
+                    <% }) %>
+                </div> 
+                <hr>
+            </div>
+            <div class="statistic">
+                <h2 class="dash-title">CATEGORY MEMBER</h2>
+                <div class="dash-cards">
+                    <% memberData.forEach((data) =>{ %>
+                    <div class="card-single">
+                        <div class="card-body">
+                            <span class="ti-check-box"></span>
+                            <div>
+                                <h4><%= data.member_name %></h4>
+                                <h5><i>Total: <%= data.total %></i></h5></p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#">View</a>
+                        </div>
+                    </div>
+                    <% }) %>
+                </div> 
+                <hr>
+            </div>
+            <div class="statistic">
+                <h2 class="dash-title">CATEGORY GUEST</h2>
+                <div class="dash-cards">
+                    <% guestData.forEach((data) =>{ %>
+                    <div class="card-single">
+                        <div class="card-body">
+                            <span class="ti-check-box"></span>
+                            <div>
+                                <h4><%= data.guest_name %></h4>
+                                <h5><i>Total: <%= data.total %></i></h5>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#">View</a>
+                        </div>
+                    </div>
+                    <% }) %>
+                </div> 
+                <hr>
+            </div>
+            <div class="statistic">
+                <h2 class="dash-title">CATEGORY COOPERATIVE</h2>
+                <div class="dash-cards">
+                    <% cooperativeData.forEach((data) =>{ %>
+                    <div class="card-single">
+                        <div class="card-body">
+                            <span class="ti-check-box"></span>
+                            <div>
+                                <h4><%= data.cooperative_name %></h4>
+                                <h5><i>Total: <%= data.total %></i></h5>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#">View</a>
+                        </div>
+                    </div>
+                    <% }) %>
+                </div> 
+                <hr>
+            </div>
+        </main>  
+    </div>
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+
+</body>
+
+</html>

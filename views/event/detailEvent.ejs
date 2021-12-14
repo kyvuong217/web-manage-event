@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    
+    <!-- Custom CSS -->
+    <base href="/">
+    <link rel="stylesheet" href="css/stylefordashboard.css">
+
+    <!-- fa fa font -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+    <title>Horizone</title>
+</head>
+
+<style>
+
+.error{
+    color: #CD3333;
+}
+
+.img-detail {
+    width: 475px;
+    height: 250px;
+    border-radius: 5%;
+    overflow: hidden;
+}
+
+
+
+.section-heading {
+    text-align: center;
+    padding: 80px 45px;
+}
+
+.section-heading h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: black;
+}
+
+/* Left & Right Post */
+.left-image,
+.right-image  {
+    border-radius: 5px;
+}
+
+.right-image-post h4,
+.left-image-post h4 {
+    margin-top: 30px;
+}
+
+.right-image-post p,
+.left-image-post p {
+    margin-top: 20px;
+}
+
+</style>
+    
+
+<body>
+
+    <% if(check == true) { %>
+        <%- include ('../include/sideBarAdmin') -%>
+    <% }else { %>
+        <%- include ('../include/sideBar') -%>
+    <% } %>
+    
+    
+    
+    <div class="main-content">   
+        <main>
+            <button class="edit" data-toggle="modal" data-target="#editor">
+                <span class="fa fa-edit"></span>
+                <span>Edit Event</span>
+            </button>
+            <br>
+            <% if (message) { %> 
+                <br>
+                <div style="text-align: center; " class="alert alert-<%= message.type %> alert-dismissible fade show" id="alert-message">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong><%= message.message %></strong>
+                </div>
+            <% } %>
+            <div class="section-heading">
+                <h2><%= eventData.event_name %></h2>
+                <div class="line-dec"></div>
+                <span><%= eventData.content_des %></span>
+            </div>
+            <div class="left-image-post">
+                <div class="row">
+                    <div class="col-md-6">
+                    <div class="left-image">
+                        <img class="img-detail" src="/img/<%= eventData.content_img %>" />
+                    </div>
+                    </div>
+                    <div class="col-md-6">
+                    <div class="right-text">
+                        <h4>Content</h4>
+                        <p>
+                        Description: <%= eventData.content_des %>
+                        </p>
+                        <p>
+                        Audience: <%= eventData.content_audience %>
+                        </p>
+                        <p>
+                        Date: <%= eventData.event_date.getDate()%>/<%= eventData.event_date.getMonth() + 1 %>/<%= eventData.event_date.getFullYear()%>
+                        </p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right-image-post">
+            <div class="row">
+                <div class="col-md-6">
+                <div class="left-text">
+                    <h4>About event</h4>
+                    <p>
+                    Guest: <%= eventData.guest_name%>
+                    </p>
+                    <p>
+                    Member: <%= eventData.member_name%>
+                    </p>
+                    <p>
+                    Cooperative: <%= eventData.cooperative_name%>. <%= eventData.cooperative_des%>
+                    </p>
+                </div>
+                </div>
+                <div class="col-md-6">
+                <div class="right-image">
+                    <img class="img-detail" src="/img/van-gogh1.jpg" />
+                </div>
+                </div>
+            </div>
+            </div>
+            <div class="modal fade" id="editor">
+                <div class="modal-dialog" >
+                    <div class="modal-content" style="width: 800px; margin-left: -100px;">
+                    <!-- Modal Header -->
+                        <div class="modal-header">
+                        <h4 class="modal-title">Edit event</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                    <!-- Modal body -->
+                        <form action="/event/edit/<%= eventData.event_id %>" id="confirmform" method="POST" role="form" enctype="multipart/form-data">
+                            <div class="p-3 py-5">
+                                <div class="row mt-3">
+                                    <div class="col-md-12">
+                                        <label><b>Name of Event</b></label>
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="event_name" value="<%= eventData.event_name %>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-12 mt-2">
+                                        <label><b>Date of event</b></label>
+                                        <div class="form-floating">
+                                            <input type="date" class="form-control" name="event_date">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mt-2">
+                                    <label><b>Description</b></label>
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control des" name="content_des" value="<%= eventData.content_des %>" style="height: 75px;">
+                                    </div>
+                                    </div>
+                                    <div class="col-md-12 mt-2">
+                                    <label><b>Audience</b></label>
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" name="content_audience" value="<%= eventData.content_audience %>">
+                                    </div>
+                                    </div>
+                                    <div class="col-md-12 mt-3">
+                                    <label><b>Image </b> <input type="file" name="img" required></label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                <div class="col-md-6 mt-1">
+                                    <div class="wrap">
+                                        <label><b>Category of event</b></label>
+                                        <div class="form-floating">
+                                            <select class="cate" name="event_cate">
+                                            <% categoryData.forEach((data) =>{%>
+                                                <option value="<%=data.category_id %>"><%=data.category_name %></option>
+                                            <%}) %>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-1">
+                                    <label><b>Co-op</b></label>
+                                    <div class="form-floating">
+                                        <select class="cate" name="event_coop">
+                                        <% cooperativeData.forEach((data) =>{%>  
+                                            <option value="<%=data.cooperative_id %>"><%=data.cooperative_name %></option>
+                                        <%}) %>
+                                        </select>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mt-1">
+                                        <div class="wrap">
+                                            <label><b>Guest</b></label>
+                                            <div class="form-floating">
+                                            <select class="cate" name="content_guest">
+                                                <% guestData.forEach((data) =>{%>  
+                                                <option value="<%=data.guest_id %>"><%=data.guest_name %></option>
+                                                <%}) %>
+                                            </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mt-1">
+                                        <label><b>Organizer</b></label>
+                                        <div class="form-floating">
+                                        <select class="cate" name="content_member">
+                                            <% memberData.forEach((data) =>{%>  
+                                            <option value="<%=data.member_id %>"><%=data.member_name%></option>
+                                            <%}) %>
+                                        </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <button class="btn" type="submit"><i class="fa fa-save"></i> Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="/js/alert.js"> </script>
+
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.validate.js"></script>
+  
+    <script type="text/javascript">
+        $( document ).ready( function () {
+          // Thêm mã lệnh tại đây
+          $("#confirmform").validate({
+            errorElement: "em", // Thông báo lỗi sẽ được đặt trong thẻ <em>.
+            highlight: function (element) {
+            // Làm thế nào để làm nổi bật trường nhập liệu lỗi: thêm lớp
+            // 'has-error', xóa lớp 'has-success' ở thẻ <div> cha của thẻ
+            // <input> bị lỗi (tham số element là một đối tượng jQuery đại
+            // diện cho thẻ <input> bị lỗi).
+              $(element).parent().addClass("has-error")
+              $(element).parent().addClass("error")
+    
+            },
+            unhighlight: function (element) {
+            // Ngược lại với tùy chọn highlight ở trên.
+              $(element).parent().removeClass("has-error")
+              $(element).parent().addClass("has-success")
+    
+            },
+    
+            rules:{
+              event_name: "required",
+              event_date: {
+                required: true,
+                date: true
+              },
+              content_des: "required",
+              content_audience: "required",
+              img: "required"
+            },
+            messages: {
+              event_name: "Please enter name of event",
+              event_date: "Please enter date of event",
+              content_des: "Please enter description of event",
+              content_audience: "Please enter audience of event",
+              img: "Please choose file"
+            },
+          });
+        } );
+    </script>
+    
+
+</body>
+
+</html>

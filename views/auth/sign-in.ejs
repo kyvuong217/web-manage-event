@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/styleforlogin.css">
+
+	<!-- fa fa font -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Horizone</title>
+</head>
+
+<style>
+	.error{
+	  color: #CD3333;
+	}
+</style>
+
+<body>
+
+    <img class="wave" src="img/login2.png">
+	<div class="container">
+		<div class="img">
+			<img src="/img/login.png">
+		</div>
+		<div class="login-content">
+			<form id="confirmform" action="/sign-in" method="POST" role="form">
+				<img src="/img/login3.png">
+				<h2 class="title">Horizone</h2>
+				<div class="col-md-12 mt-4">
+					<!-- <i class="fa fa-user"></i> -->
+					<div class="form-floating">
+						<input type="text" class="form-control" name="account_name" placeholder="Username">
+					</div>
+				</div>
+
+				<div class="col-md-12 mt-4">
+					<!-- <i class="fa fa-lock"></i> -->
+					<div class="form-floating">
+						<input type="password" class="form-control" name="account_passwd" placeholder="Password">
+					</div>
+				</div>
+				<br>
+            	<a href="/register">Register?</a>
+            	<button type="submit" class="btn ">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.validate.js"></script>
+  
+    <script type="text/javascript">
+  
+      $( document ).ready( function () {
+        // Thêm mã lệnh tại đây
+        $("#confirmform").validate({
+          errorElement: "em", // Thông báo lỗi sẽ được đặt trong thẻ <em>.
+          highlight: function (element) {
+          // Làm thế nào để làm nổi bật trường nhập liệu lỗi: thêm lớp
+          // 'has-error', xóa lớp 'has-success' ở thẻ <div> cha của thẻ
+          // <input> bị lỗi (tham số element là một đối tượng jQuery đại
+          // diện cho thẻ <input> bị lỗi).
+            $(element).parent().addClass("has-error")
+            $(element).parent().addClass("error")
+  
+          },
+          unhighlight: function (element) {
+          // Ngược lại với tùy chọn highlight ở trên.
+            $(element).parent().removeClass("has-error")
+            $(element).parent().addClass("has-success")
+  
+          },
+  
+          rules:{
+			account_name: {
+				required: true,
+				minlength: 6
+			},
+            account_passwd: {
+				required: true,
+				minlength: 6
+			},
+          },
+          messages: {
+			account_name: {
+				required: "Please enter your user name",
+				minlength: "The Username must be at least 6 characters"
+			},
+			account_passwd: {
+				required: "Please enter your account password",
+				minlength: "The password must be at least 6 characters"
+			},
+          },
+        });
+      } );
+    </script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/stylefordashboard.css">
+
+    <!-- fa fa font -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <title>Horizone</title>
+</head>
+
+<body>
+
+    <%- include ('./include/sideBar') -%>
+    
+    <div class="main-content">   
+        <main>
+            <h2 class="dash-title">Overview</h2>
+            <div class="dash-cards">
+                <div class="card-single">
+                    <div class="card-body">
+                        <span class="fa fa-user"></span>
+                        <div>
+                            <h5>Infomation</h5>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="/profile">View</a>
+                    </div>
+                </div>
+                
+                <div class="card-single">
+                    <div class="card-body">
+                        <span class="fa fa-braille"></span>
+                        <div>
+                            <h5>Event</h5>
+
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="/event">View</a>
+                    </div>
+                </div>
+
+                <div class="card-single">
+                    <div class="card-body">
+                        <span class="fa fa-wrench"></span>
+                        <div>
+                            <h5>Create Event</h5>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="/create-event">View</a>
+                    </div>
+                </div>
+                
+                <div class="card-single">
+                    <div class="card-body">
+                        <span class="fa fa-align-left"></span>
+                        <div>
+                            <h5>Statistic</h5>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="/statistic">View</a>
+                    </div>
+                </div>
+
+                <div class="card-single">
+                    <div class="card-body">
+                        <span class="fa fa-newspaper-o"></span>
+                        <div>
+                            <h5>Excel File</h5>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="/excelFile">View</a>
+                    </div>
+                </div>
+
+            </div>     
+        </main>  
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/stylefordashboard.css">
+
+	  <!-- fa fa font -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Horizone</title>
+</head>
+ 
+<style>
+	.error{
+	  color: #CD3333;
+	}
+</style>
+
+<body>
+
+    <%- include ('../include/sideBar') -%>
+
+    <div class="main-content">   
+        <main>
+            <div class="container">
+                <div class="row">
+                    <div class="mx-auto">
+                      <% if (message) { %> 
+                        <div style="text-align: center; " class="alert alert-<%= message.type %> alert-dismissible fade show" id="alert-message">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong><%= message.message %></strong>
+                        </div>
+                      <% } %>
+                        <form action="/create-event" id="confirmform" method="POST" role="form" enctype="multipart/form-data">
+                          <div class="p-3 py-5">
+                              <div class="d-flex justify-content-between align-items-center mb-3">
+                                  <h3><b>Create new event</b></h3>
+                              </div>
+                              <div class="row mt-3">
+                                  <div class="col-md-12">
+                                      <label><b>Name of Event</b></label>
+                                      <div class="form-floating">
+                                          <input type="text" class="form-control" name="event_name" placeholder="Name of event">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="row mt-2">
+                                  <div class="col-md-12 mt-2">
+                                      <label><b>Date of event</b></label>
+                                      <div class="form-floating">
+                                          <input type="date" class="form-control" name="event_date">
+                                      </div>
+                                  </div>
+                                  <div class="col-md-12 mt-2">
+                                    <label><b>Description</b></label>
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control des" name="content_des" placeholder="Description" style="height: 75px;">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-12 mt-2">
+                                    <label><b>Audience</b></label>
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" name="content_audience" placeholder="Audience">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-12 mt-3">
+                                    <label><b>Image </b> <input type="file" name="img" required></label>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-6 mt-1">
+                                    <div class="wrap">
+                                        <label><b>Category of event</b></label>
+                                        <div class="form-floating">
+                                          <select class="cate" name="event_cate">
+                                            <% categoryData.forEach((data) =>{%>
+                                              <option value="<%=data.category_id %>"><%=data.category_name %></option>
+                                            <%}) %>
+                                          </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-1">
+                                    <label><b>Co-op</b></label>
+                                    <div class="form-floating">
+                                      <select class="cate" name="event_coop">
+                                        <% cooperativeData.forEach((data) =>{%>  
+                                          <option value="<%=data.cooperative_id %>"><%=data.cooperative_name %></option>
+                                        <%}) %>
+                                      </select>
+                                    </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-md-6 mt-1">
+                                      <div class="wrap">
+                                          <label><b>Guest</b></label>
+                                          <div class="form-floating">
+                                            <select class="cate" name="content_guest">
+                                              <% guestData.forEach((data) =>{%>  
+                                                <option value="<%=data.guest_id %>"><%=data.guest_name %></option>
+                                              <%}) %>
+                                            </select>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-6 mt-1">
+                                      <label><b>Organizer</b></label>
+                                      <div class="form-floating">
+                                        <select class="cate" name="content_member">
+                                          <% memberData.forEach((data) =>{%>  
+                                            <option value="<%=data.member_id %>"><%=data.member_name%></option>
+                                          <%}) %>
+                                        </select>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="mt-4">
+                                  <button class="btn btn-primary profile-btn btn-block" type="submit"><i class="fa fa-save"></i> Create Event</button>
+                              </div>
+                          </div>
+                        </form>
+                    </div>
+                  </div>
+            </div>
+        </main>  
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="/js/alert.js"> </script>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.validate.js"></script>
+  
+    <script type="text/javascript">
+  
+      $( document ).ready( function () {
+        // Thêm mã lệnh tại đây
+        $("#confirmform").validate({
+          errorElement: "em", // Thông báo lỗi sẽ được đặt trong thẻ <em>.
+          highlight: function (element) {
+          // Làm thế nào để làm nổi bật trường nhập liệu lỗi: thêm lớp
+          // 'has-error', xóa lớp 'has-success' ở thẻ <div> cha của thẻ
+          // <input> bị lỗi (tham số element là một đối tượng jQuery đại
+          // diện cho thẻ <input> bị lỗi).
+            $(element).parent().addClass("has-error")
+            $(element).parent().addClass("error")
+  
+          },
+          unhighlight: function (element) {
+          // Ngược lại với tùy chọn highlight ở trên.
+            $(element).parent().removeClass("has-error")
+            $(element).parent().addClass("has-success")
+  
+          },
+  
+          rules:{
+            event_name: "required",
+            event_date: {
+              required: true,
+              date: true
+            },
+            content_des: "required",
+            content_audience: "required",
+            img: "required"
+          },
+          messages: {
+            event_name: "Please enter name of event",
+            event_date: "Please enter date of event",
+            content_des: "Please enter description of event",
+            content_audience: "Please enter audience of event",
+            img: "Please choose file"
+          },
+        });
+      } );
+    </script>
+</body>
+
+</html>

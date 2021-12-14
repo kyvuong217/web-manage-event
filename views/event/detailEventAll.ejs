@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    
+    <!-- Custom CSS -->
+    <base href="/"> 
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+
+
+    <title>Horizone</title>
+</head>
+<style>
+.img-detail {
+    width: 475px;
+    height: 250px;
+    border-radius: 5%;
+    overflow: hidden;
+}
+
+
+.section-heading {
+    text-align: center;
+    padding: 80px 45px;
+}
+
+.section-heading h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: black;
+}
+
+/* Left & Right Post */
+.left-image,
+.right-image  {
+    border-radius: 5px;
+}
+
+.right-image-post h4,
+.left-image-post h4 {
+    margin-top: 30px;
+}
+
+.right-image-post p,
+.left-image-post p {
+    margin-top: 20px;
+}
+
+</style>
+
+<body>
+    <div class="container">
+      <%- include ('../include/header') -%> 
+      <div class="section-heading">
+        <h2><%= eventData.event_name %></h2>
+        <div class="line-dec"></div>
+        <span><%= eventData.content_des %></span>
+      </div>
+      <div class="left-image-post">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="left-image">
+              <img class="img-detail" src="/img/<%= eventData.content_img %>"/>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="right-text">
+              <h4>Content</h4>
+              <p>
+                Description: <%= eventData.content_des %>
+              </p>
+              <p>
+                Audience: <%= eventData.content_audience %>
+              </p>
+              <p>
+                Date: <%= eventData.event_date.getDate()%>/<%= eventData.event_date.getMonth() + 1%>/<%= eventData.event_date.getFullYear()%>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right-image-post">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="left-text">
+              <h4>About event</h4>
+              <p>
+                Guest: <%= eventData.guest_name%>
+              </p>
+              <p>
+                Member: <%= eventData.member_name%>
+              </p>
+              <p>
+                Cooperative: <%= eventData.cooperative_name%>. <%= eventData.cooperative_des%>
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="right-image">
+              <img class="img-detail" src="/img/van-gogh1.jpg"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <%- include ('../include/footer') -%> 
+    
+
+</body>
+
+</html>

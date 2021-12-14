@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/stylefordashboard.css">
+
+	<!-- fa fa font -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Horizone</title>
+</head>
+
+<style>
+	.error{
+	  color: #CD3333;
+	}
+</style>
+
+
+<body>
+
+    <%- include ('../include/sideBarAdmin') -%> 
+    
+    <div class="main-content">   
+        <main>
+            <h2 class="dash-title">CATEGORY OF POSITON</h2>
+            <a href="/editProfile" data-toggle="modal" data-target="#editor">
+                <span class="fa fa-edit"></span>
+                <span>Create position</span>
+            </a>
+            <hr>
+            <% if (message) { %> 
+                <div style="text-align: center; " class="alert alert-<%= message.type %> alert-dismissible fade show" id="alert-message">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong><%= message.message %></strong>
+                </div>
+            <% } %>
+            <div class="dash-cards">
+                <% positionData.forEach((data) =>{ %>
+                <div class="card-single" style="background-color: #8B475D;">
+                    <span class="pull-right" style="position: relative; margin-top: -5px;"><a href="/position/delete/<%= data.position_id %>" onclick="confirm_delete()" style="font-size: 30px; text-decoration: none; color: #777;">&times;</a></span>
+                    <div class="card-body" >
+                        <div>
+                            <a href="#" data-toggle="modal" data-target="#ID<%= data.position_id %>"><span class="fa fa-edit"></span></a>
+                        </div>
+                        <div>
+                            <h5 style="color: #ECAB53;"><%= data.position_name %></h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="ID<%= data.position_id %>">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <!-- Modal Header -->
+                            <div class="modal-header">
+                            <h4 class="modal-title">Edit Position</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                        <!-- Modal body -->
+                            <form action="/position/edit" method="POST" role="form">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label>Name of Position</label>
+                                        <input type="hidden" name="position_id" value="<%= data.position_id %>">
+                                        <input class="form-control" type="text" name="position_name" value="<%= data.position_name %>" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea class="form-control" type="text" name="position_des" rows="3"></textarea>
+                                    </div>
+                                    <hr>
+                                    <button class="col-md-12 btn " type="submit" style="background-color: #8B475D;">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+            </div> 
+
+            <!-- Modal for edit -->
+            <div class="modal fade" id="editor">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <!-- Modal Header -->
+                        <div class="modal-header">
+                        <h4 class="modal-title">Creat new Position</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                    <!-- Modal body -->
+                        <form action="/position" id="confirmform" method="POST" role="form">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Name of Position</label>
+                                    <input class="form-control" type="text" name="position_name">
+                                </div>
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea class="form-control" type="text" name="position_des" rows="3"></textarea>
+                                </div>
+                                <hr>
+                                <button class="col-md-12 btn " type="submit" style="background-color: #8B475D;">Create</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="/js/alert.js"> </script>
+
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.validate.js"></script>
+  
+    <script type="text/javascript">
+  
+      $( document ).ready( function () {
+        // Thêm mã lệnh tại đây
+        $("#confirmform").validate({
+          errorElement: "em", // Thông báo lỗi sẽ được đặt trong thẻ <em>.
+          highlight: function (element) {
+          // Làm thế nào để làm nổi bật trường nhập liệu lỗi: thêm lớp
+          // 'has-error', xóa lớp 'has-success' ở thẻ <div> cha của thẻ
+          // <input> bị lỗi (tham số element là một đối tượng jQuery đại
+          // diện cho thẻ <input> bị lỗi).
+            $(element).parent().addClass("has-error")
+            $(element).parent().addClass("error")
+  
+          },
+          unhighlight: function (element) {
+          // Ngược lại với tùy chọn highlight ở trên.
+            $(element).parent().removeClass("has-error")
+            $(element).parent().addClass("has-success")
+  
+          },
+  
+          rules:{
+            position_name: "required"
+          },
+          messages: {
+            position_name: "Please enter name of position"
+          },
+        });
+        });
+
+        function confirm_delete(){
+           return confirm('Are you sure to delete');
+        }
+    </script>
+    
+</body>
+
+</html>

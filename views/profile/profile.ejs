@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/stylefordashboard.css">
+
+    <!-- fa fa font -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <title>Horizone</title>
+</head>
+
+<body>
+
+    <%- include ('../include/sidebar') -%>
+    
+    <div class="main-content">   
+        <main>
+            <a href="/editProfile">
+                <span class="fa fa-edit"></span>
+                <span>Edit Profile</span>
+            </a>
+            <div class="profile">
+                <h2 class="dash-title">Personal Information</h2>
+                <img src="/img/<%=profileData.info_img%>.jpg"/>
+            </div>
+            <div class="row mt-1">
+                <div class="col-sm-3">
+                    <h4 class="mb-0">Full Name</h4>
+                </div>
+                <div class="col-sm-9 text-secondary"><%=profileData.info_name%></div>
+            </div>
+            <div class="row mt-1">
+                <div class="col-sm-3">
+                    <h4 class="mb-0"> Date of birth</h4>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                    <% if(profileData.info_dob){ %>
+                        <%=profileData.info_dob.getDate()%>/<%=profileData.info_dob.getMonth() + 1 %>/<%=profileData.info_dob.getFullYear()%>
+                    <% } %>
+                </div>
+            </div>
+            <div class="dash-cards">
+                <div class="card-single">
+                    <div class="card-body">
+                        <span class="fa fa-envelope"></span>
+                        <div>
+                            <h5>Email</h5>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <%=profileData.info_email%>
+                    </div>
+                </div>
+                
+                <div class="card-single">
+                    <div class="card-body">
+                        <span class="fa fa-phone"></span>
+                        <div>
+                            <h5>Phone</h5>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <%=profileData.info_phone%>
+                    </div>
+                </div>
+                
+                <div class="card-single">
+                    <div class="card-body">
+                        <span class="fa fa-briefcase"></span>
+                        <div>
+                            <h5>Position</h5>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <%=profileData.position_name%>
+                    </div>
+                </div>
+            </div>     
+            
+        </main>  
+    </div>
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+</body>
+
+</html>

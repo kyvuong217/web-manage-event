@@ -1,0 +1,37 @@
+<header class="head my-3">
+    <nav class="navbar navbar-expand-lg navbar-light head__custom-nav">
+        <a class="navbar-brand d-flex align-items-center" href="/">
+            <img src="img/logo.png">
+            <span>Horizone</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span><img src="img/menu.png" alt=""></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/create-event">Create</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/eventAll">Event</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/statisticAll">Statistic</a>
+                </li>
+            </ul>
+        </div>
+        <% if (check === true) { %>
+          <a class="navbar-brand d-flex justify-content-end" href="/dashboard">
+            <h6 style="font-family: sans-serif; margin-top: 8px;">Hi, <%=profileData.info_name%> </h6>
+            <img src="img/<%= profileData.info_img %>.jpg" style="margin-left: 1rem; height: 38px; width: 38px; background-size: cover; background-repeat: no-repeat; border-radius: 50%;" >
+          </a>
+        <%} else { %>
+          <a class="navbar-brand d-flex justify-content-end" href="/sign-in">
+            <button class="btn btn-outline-info">Login</button>
+          </a>
+        <% } %>
+    </nav>
+</header>

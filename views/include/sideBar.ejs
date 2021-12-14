@@ -1,0 +1,54 @@
+<input type="checkbox" id="sidebar-toggle">
+<div class="sidebar">
+    <div class="sidebar-header">
+        <h3 class="brand">
+            <a href="/" style="font-size: 30px;"><span>Horizone</span></a>
+        </h3> 
+        <label for="sidebar-toggle" class="fa fa-bars"></label>
+    </div>
+    <div class="sidebar-menu">
+        <ul>
+            <li>
+                <a href="/dashboard">
+                    <span class="fa fa-home"></span>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="/profile">
+                    <span class="fa fa-user"></span>
+                    <span>Profile</span>
+                </a>
+            </li>
+            <li>
+                <a href="/event">
+                    <span class="fa fa-braille"></span>
+                    <span>Event</span>
+                </a>
+            </li>
+            <li>
+                <a href="/create-event">
+                    <span class="fa fa-wrench"></span>
+                    <span>Create</span>
+                </a>
+            </li>
+            <li>
+                <a href="/statistic">
+                    <span class="fa fa-align-left"></span>
+                    <span>Statistic</span>
+                </a>
+            </li>
+            <li>
+                <a href="/logout">
+                    <span class="fa fa-power-off"></span>
+                    <span>Sign Out</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+<header> 
+    <h6 style="font-family: sans-serif; margin-top: 8px;">Hi, <%=profileData.info_name%></h6>
+    <img src="/img/<%=profileData.info_img%>.jpg" >
+</header>

@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    
+    <!-- Custom CSS -->
+    <base href="/"> 
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+
+    <title>Horizone</title>
+</head>
+
+<style>
+
+.dash-title {
+    color: var(--text-grey);
+    margin-bottom: 1rem;
+}
+
+.dash-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 3rem;
+}
+
+.card-single {
+    margin-top: 25px;
+    background: #fff;
+    border-radius: 7px;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+}
+
+.card-body {
+    padding: 1.3rem 1rem;
+    display: flex;
+    
+}
+
+.card-body span {
+    font-size: 1.5rem;
+    color: #777;
+    padding-right: 1.4rem;
+}
+
+.card-body h5 {
+    color: var(--text-grey);
+    font-size: 1.2rem;
+}
+
+.card-body h4 {
+    color: var(--color-dark);
+    font-size: 1.1rem;
+    margin-top: .2rem;
+}
+
+.card-footer {
+    padding: .2rem 1rem;
+    background: #00688B; 
+    color: whitesmoke;
+}
+
+.card-footer a {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+.card-footer a:hover {
+    color: #ECAB53;
+}
+</style>
+
+
+<body>
+    <div class="container">
+        <%- include ('../include/header') -%> 
+        <br><br>
+        <div class="title">STATISTIC</div>
+        <br>
+        <div class="statistic">
+            <h2 class="dash-title">CATEGORY EVENT</h2>
+            <div class="dash-cards">
+                <% categoryData.forEach((data) =>{ %>
+                <div class="card-single">
+                    <div class="card-body">
+                        <span class="ti-check-box"></span>
+                        <div>
+                            <h4><%= data.category_name %></h4>
+                            <h5><i>Total: <%= data.total %></i></h5></p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="/categoryAll/<%= data.category_id %>">View</a>
+                    </div>
+                </div>
+                <% }) %>
+        </div> 
+        <hr>
+        </div>
+        <div class="statistic">
+            <h2 class="dash-title">CATEGORY MEMBER</h2>
+            <div class="dash-cards">
+                <% memberData.forEach((data) =>{ %>
+                <div class="card-single">
+                    <div class="card-body">
+                        <span class="ti-check-box"></span>
+                        <div>
+                            <h4><%= data.member_name %></h4>
+                            <h5><i>Total: <%= data.total %></i></h5></p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#">View</a>
+                    </div>
+                </div>
+                <% }) %>
+            </div> 
+            <hr>
+        </div>
+        <div class="statistic">
+            <h2 class="dash-title">CATEGORY GUEST</h2>
+            <div class="dash-cards">
+                <% guestData.forEach((data) =>{ %>
+                <div class="card-single">
+                    <div class="card-body">
+                        <span class="ti-check-box"></span>
+                        <div>
+                            <h4><%= data.guest_name %></h4>
+                            <h5><i>Total: <%= data.total %></i></h5>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#">View</a>
+                    </div>
+                </div>
+                <% }) %>
+            </div> 
+            <hr>
+        </div>
+        <div class="statistic">
+            <h2 class="dash-title">CATEGORY COOPERATIVE</h2>
+            <div class="dash-cards">
+                <% cooperativeData.forEach((data) =>{ %>
+                <div class="card-single">
+                    <div class="card-body">
+                        <span class="ti-check-box"></span>
+                        <div>
+                            <h4><%= data.cooperative_name %></h4>
+                            <h5><i>Total: <%= data.total %></i></h5>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#">View</a>
+                    </div>
+                </div>
+                <% }) %>
+            </div> 
+            <hr>
+        </div>
+    </div>
+    <%- include ('../include/footer') -%> 
+    
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <!-- Optional JavaScript -->
+</body>
+
+</html>
